@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haus Sonnenschein - Pflegeheim in Danewerk</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: "☀️";
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(244, 162, 97, 0.8), rgba(231, 111, 81, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f9f7f3" width="1200" height="600"/><g fill="%23e8e1d6"><circle cx="200" cy="150" r="80"/><circle cx="800" cy="400" r="60"/><circle cx="1000" cy="200" r="40"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #e76f51;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #2a9d8f;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #2a9d8f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Oase Section */
+        .oase-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        .oase-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .oase-image {
+            background: linear-gradient(45deg, #2a9d8f, #264653);
+            border-radius: 15px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* Team Section */
+        .team-highlight {
+            background: #264653;
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .team-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f4a261;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Career Section */
+        .career-section {
+            background: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .career-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .benefit {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            color: #2a9d8f;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .contact-item span {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #264653;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .oase-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card,
+        .oase-section,
+        .team-highlight,
+        .career-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Haus Sonnenschein</div>
+            <ul class="nav-links">
+                <li><a href="#home">Start</a></li>
+                <li><a href="#ueber-uns">Über uns</a></li>
+                <li><a href="#pflegeoase">Pflegeoase</a></li>
+                <li><a href="#karriere">Karriere</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Haus Sonnenschein</h1>
+            <p>Liebevolle Pflege und Betreuung in familiärer Atmosphäre im Herzen von Danewerk</p>
+            <a href="#kontakt" class="cta-button">Jetzt informieren</a>
+        </section>
+
+        <section id="ueber-uns">
+            <div class="section-header">
+                <h2>Herzlich willkommen im Haus Sonnenschein</h2>
+                <p>Unser Pflegeheim in Danewerk bietet 43 Bewohnern ein liebevolles Zuhause mit professioneller Betreuung und individueller Pflege.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Familiäre Atmosphäre</h3>
+                    <p>In unserem Haus herrscht eine warme, familiäre Atmosphäre, in der sich unsere 43 Bewohner rundum wohlfühlen und geborgen sind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👩‍⚕️</div>
+                    <h3>Professionelle Pflege</h3>
+                    <p>Unser erfahrenes und motiviertes Pflegeteam sorgt rund um die Uhr für eine individuelle und liebevolle Betreuung jedes Bewohners.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Eigene Küche</h3>
+                    <p>Frische, gesunde Mahlzeiten aus unserer eigenen Küche - täglich mit Liebe zubereitet von unserem erfahrenen Küchenteam.</p>
+                </div>
+            </div>
+
+            <div class="team-highlight">
+                <h2>Unser engagiertes Team</h2>
+                <p>Mit Herz, Kompetenz und langjähriger Erfahrung sorgen wir für das Wohlbefinden unserer Bewohner</p>
+                <div class="team-stats">
+                    <div class="stat">
+                        <div class="stat-number">43</div>
+                        <div class="stat-label">Bewohner</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Pflegekräfte</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Betreuung</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pflegeoase">
+            <div class="section-header">
+                <h2>Unsere Pflegeoase</h2>
+                <p>Ein besonderer Ort für Menschen mit Demenz - Geborgenheit in gemeinschaftlicher Atmosphäre</p>
+            </div>
+
+            <div class="oase-section">
+                <div class="oase-content">
+                    <div>
+                        <h3 style="color: #2a9d8f; margin-bottom: 1rem;">Was ist eine Pflegeoase?</h3>
+                        <p style="margin-bottom: 1rem;">Unsere Pflegeoase ist ein speziell gestalteter Wohnbereich für Menschen mit schwerer Demenz. Hier leben mehrere Bewohner in einem großen, gemeinschaftlichen Raum zusammen und erhalten rund um die Uhr liebevolle Betreuung.</p>
+                        
+                        <h4 style="color: #264653; margin: 1.5rem 0 0.5rem 0;">Unsere Besonderheiten:</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin: 0.5rem 0;">✓ Gemeinschaftliches Wohnen in beruhigender Atmosphäre</li>
+                            <li style="margin: 0.5rem 0;">✓ Kontinuierliche Betreuung durch geschultes Personal</li>
+                            <li style="margin: 0.5rem 0;">✓ Individuelle Pflege trotz Gemeinschaftskonzept</li>
+                            <li style="margin: 0.5rem 0;">✓ Sicherheit und Geborgenheit für schwer Demenzkranke</li>
+                        </ul>
+                    </div>
+                    <div class="oase-image">
+                        <div>
+                            <p style="margin-bottom: 1rem;">🌸 Pflegeoase 🌸</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">[Hier wird später Ihr Foto der Pflegeoase eingefügt]</p>
+                            <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.8;">Liebevolle Betreuung in gemeinschaftlicher Atmosphäre</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="karriere">
+            <div class="career-section">
+                <h2>Werde Teil unseres Teams!</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Suchst du einen erfüllenden Job in der Pflege? Bei uns findest du mehr als nur einen Arbeitsplatz.</p>
+
+                <div class="career-benefits">
+                    <div class="benefit">
+                        <h3>💼 Sichere Anstellung</h3>
+                        <p>Unbefristete Verträge und faire Bezahlung in einem zukunftssicheren Beruf</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>🎓 Weiterbildung</h3>
+                        <p>Regelmäßige Fortbildungen und Unterstützung bei deiner beruflichen Entwicklung</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>👥 Tolles Team</h3>
+                        <p>Arbeite mit motivierten Kollegen in einer unterstützenden, familiären Atmosphäre</p>
+                    </div>
+                    <div class="benefit">
+                        <h3>⚖️ Work-Life-Balance</h3>
+                        <p>Flexible Arbeitszeiten und faire Dienstplangestaltung für deine Lebensqualität</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3>Wir suchen:</h3>
+                    <p style="margin: 1rem 0;">✓ Examierte Pflegefachkräfte ✓ Pflegehelfer/innen ✓ Quereinsteiger mit Herz für Menschen</p>
+                    <a href="#kontakt" class="cta-button" style="background: #f4a261; color: white; margin-top: 1rem;">Jetzt bewerben</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt">
+            <div class="section-header">
+                <h2>Kontakt & Anfahrt</h2>
+                <p>Wir freuen uns auf Ihren Besuch und beantworten gerne alle Ihre Fragen</p>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Haus Sonnenschein</h3>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <div>
+                                <strong>Adresse:</strong><br>
+                                Musterstraße 123<br>
+                                24867 Danewerk
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span>📞</span>
+                            <div>
+                                <strong>Telefon:</strong><br>
+                                04621 / 12345
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span>✉️</span>
+                            <div>
+                                <strong>E-Mail:</strong><br>
+                                info@haus-sonnenschein-danewerk.de
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span>🕐</span>
+                            <div>
+                                <strong>Besuchszeiten:</strong><br>
+                                Täglich 9:00 - 18:00 Uhr<br>
+                                <small>(Andere Zeiten nach Absprache möglich)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Ansprechpartner</h3>
+                        <div class="contact-item">
+                            <span>👤</span>
+                            <div>
+                                <strong>Heimleitung:</strong><br>
+                                [Ihr Name]<br>
+                                <small>Gerne vereinbaren wir einen persönlichen Besichtigungstermin</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span>💼</span>
+                            <div>
+                                <strong>Bewerbungen:</strong><br>
+                                bewerbung@haus-sonnenschein-danewerk.de<br>
+                                <small>Wir freuen uns auf Ihre Bewerbung!</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span>🚗</span>
+                            <div>
+                                <strong>Parkplätze:</strong><br>
+                                Kostenfreie Parkplätze<br>
+                                direkt am Haus verfügbar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Haus Sonnenschein Danewerk. Alle Rechte vorbehalten.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <a href="#" style="color: #f4a261; text-decoration: none;">Impressum</a> | 
+            <a href="#" style="color: #f4a261; text-decoration: none;">Datenschutz</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(244, 162, 97, 0.95) 0%, rgba(231, 111, 81, 0.95) 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #f4a261 0%, #e76f51 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.feature-card, .oase-section, .team-highlight, .career-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
